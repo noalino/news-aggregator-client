@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { logOut } from '../../actions/userActions';
 import toggleSidebar from '../../actions/layoutActions';
 
-import SearchNav from './SearchNav';
 import CountryDropdown from './CountryDropdown';
 import styles from '../../styles/navbar/Navbar.scss';
 
@@ -54,7 +53,6 @@ const Navbar = ({ isAuthenticate, logOut, toggleSidebar, sidebarOpen }) => (
             </li>
           )
         }
-        <li><SearchNav toggleSidebar={toggleSidebar} /></li>
         <li><CountryDropdown toggleSidebar={toggleSidebar} /></li>
       </div>
     </ul>
