@@ -4,6 +4,10 @@ A website that enables you to read headlines by topics, search for news articles
 
 Made with [News API](https://newsapi.org/).
 
+Requirements:
+- Node (>= v12)
+- npm (>= v6)
+
 Environment variables:
 - `NODE_ENV`: Node environment (i.e. `development` | `production`)
 - `APP_URL`: URL of the site

@@ -3,3 +3,4 @@ package-lock.json
 public-key.pem
 private-key.pem
 client/package-lock.json
+.env
