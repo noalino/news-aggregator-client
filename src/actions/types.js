@@ -1,7 +1,6 @@
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const FETCH_BOOKMARKS = 'FETCH_BOOKMARKS';
-export const SEARCH_ARTICLES = 'SEARCH_ARTICLES';
-export const FETCH_SOURCES = 'FETCH_SOURCES';
+export const RESET_ARTICLES = 'RESET_ARTICLES';
 export const CHANGE_COUNTRY = 'CHANGE_COUNTRY';
 export const LOAD = 'LOAD';
 

@@ -1,8 +1,7 @@
 import {
   CHANGE_COUNTRY,
   FETCH_ARTICLES,
-  SEARCH_ARTICLES,
-  FETCH_SOURCES,
+  RESET_ARTICLES,
   LOAD,
 } from '../actions/types';
 
@@ -18,9 +17,6 @@ const initialState = {
     },
   },
   sources: [],
-  page: 1,
-  pageSize: 20,
-  totalResults: 0,
   errMessage: '',
 };
 
@@ -42,18 +38,11 @@ export default (state = initialState, { type, payload }) => {
         articles: payload,
         isLoading: false,
       };
-    case SEARCH_ARTICLES:
+    case RESET_ARTICLES:
       return {
         ...state,
-        totalResults: payload.totalResults,
-        articles: payload.articles,
-        page: payload.page,
+        articles: [],
         isLoading: false,
-      };
-    case FETCH_SOURCES:
-      return {
-        ...state,
-        sources: payload,
       };
     default:
       return state;

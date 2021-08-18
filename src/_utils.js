@@ -1,8 +1,6 @@
 import moment from 'moment';
 import topicsList from './_topics';
 
-const { API_KEY } = process.env;
-
 export const isValidTopic = topic => (
   topicsList.find(({ name }) => name === topic) || false
 );
@@ -20,29 +18,6 @@ export const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/
 /*----------------------------
      URL TRANSFORMATIONS
 ----------------------------*/
-export const extractParams = ({ page = 1, ...args }) => {
-  const {
-    query,
-    options,
-    language,
-    pageSize,
-  } = args;
-  const { from, to, source, sortBy } = options;
-  const sorting = sortBy === 'date' ? 'publishedAt' : sortBy;
-
-  return {
-    q: query,
-    from,
-    to,
-    sources: source,
-    sortBy: sorting,
-    language,
-    pageSize,
-    page,
-    apiKey: API_KEY,
-  };
-};
-
 /*
   Transform url string | '?q=test&sortBy=date' |
   to object            | { q: test, sortBy: date } |
@@ -123,21 +98,4 @@ export const fetchAction = async ({ articles, newArticles }) => {
   const withId = await generateId(newArticles);
   const filtered = await filterArticles(withId);
   return addNewestParam(filtered, articles);
-};
-
-export const searchAction = async (articles) => {
-  const withId = await generateId(articles);
-  const filtered = await filterArticles(withId);
-  return filtered.map(article => ({ ...article, newest: true }));
-};
-
-export const loadNextAction = async ({ articles, newArticles }) => {
-  const withId = await generateId(newArticles);
-  const addNewest = async (prevArticles, nextArticles) => {
-    const prev = prevArticles.map(article => ({ ...article, newest: false }));
-    const next = nextArticles.map(article => ({ ...article, newest: true }));
-    return prev.concat(next);
-  };
-  const articlesWithNewest = await addNewest(articles, withId);
-  return filterArticles(articlesWithNewest);
 };
