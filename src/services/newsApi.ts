@@ -1,5 +1,5 @@
 import axios, { CancelToken as CancelTokenType } from 'axios';
-import { Country } from '@config/context';
+import { Country } from '@store/context';
 
 type Category =
 	| 'general'

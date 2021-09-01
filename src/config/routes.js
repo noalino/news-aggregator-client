@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom';
-import { AuthContext, CountryContext } from '@config/context';
+import { AuthContext, CountryContext } from '@store/context';
 import topics from '@config/topics';
 import { NotFoundView, TopicView } from '@views';
 

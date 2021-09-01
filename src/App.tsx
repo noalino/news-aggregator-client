@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from '@config/routes';
-import { AuthContext, Country, CountryContext } from '@config/context';
+import { AuthContext, Country, CountryContext } from '@store/context';
 import { Layout } from '@components';
 import { NotFoundView } from '@views';
 

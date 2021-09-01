@@ -1,4 +1,4 @@
-import { AuthContext, CountryContext } from '@config/context';
+import { AuthContext, CountryContext } from '@store/context';
 import { Login } from '@components';
 
 interface NavBarProps {

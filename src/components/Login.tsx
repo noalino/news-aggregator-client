@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import userApi from '@services/userApi';
-import { AuthContextType } from '@config/context';
+import { AuthContextType } from '@store/context';
 import { LoginForm } from '@components';
 
 interface LoginProps {
