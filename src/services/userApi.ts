@@ -6,15 +6,17 @@ interface Credentials {
 }
 
 interface UserServices {
-	signUp: (
+	createAccount: (
 		cancelToken: CancelTokenType,
 		{ login, password }: Credentials
 	) => Promise<void>;
-	signIn: (
+	createToken: (
 		cancelToken: CancelTokenType,
 		{ login, password }: Credentials
 	) => Promise<void>;
-	logout: (cancelToken: CancelTokenType) => Promise<void>;
+	signIn: (cancelToken: CancelTokenType) => Promise<void>;
+	signOff: (cancelToken: CancelTokenType) => Promise<void>;
+	addBookmark: (cancelToken: CancelTokenType) => Promise<void>;
 }
 
 type ObjectFromType<Type> = {
@@ -25,12 +27,12 @@ type ObjectFromType<Type> = {
 // 	baseURL: 'https://news-aggregator.benoitgelineau.com/api',
 // });
 
-const signUp: UserServices['signUp'] = async (
+const createAccount: UserServices['createAccount'] = async (
 	cancelToken,
 	{ login, password }
 ) => {
 	try {
-		console.log('signUp');
+		console.log('createAccount');
 		const promise = new Promise((resolve, reject) => {
 			setTimeout(() => {
 				resolve(true);
@@ -46,10 +48,28 @@ const signUp: UserServices['signUp'] = async (
 	}
 };
 
-const signIn: UserServices['signIn'] = async (
+const createToken: UserServices['createToken'] = async (
 	cancelToken,
 	{ login, password }
 ) => {
+	try {
+		console.log('createToken');
+		const promise = new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(true);
+			}, 2000);
+		});
+		await promise;
+	} catch (err) {
+		if (axios.isCancel(err)) {
+			console.log('request is canceled:', err.message);
+		} else {
+			console.log('fetch error:', err);
+		}
+	}
+};
+
+const signIn: UserServices['signIn'] = async (cancelToken) => {
 	try {
 		console.log('signIn');
 		const promise = new Promise((resolve, reject) => {
@@ -67,9 +87,27 @@ const signIn: UserServices['signIn'] = async (
 	}
 };
 
-const logout: UserServices['logout'] = async (cancelToken) => {
+const signOff: UserServices['signOff'] = async (cancelToken) => {
 	try {
-		console.log('logout');
+		console.log('signOff');
+		const promise = new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(true);
+			}, 2000);
+		});
+		await promise;
+	} catch (err) {
+		if (axios.isCancel(err)) {
+			console.log('request is canceled:', err.message);
+		} else {
+			console.log('fetch error:', err);
+		}
+	}
+};
+
+const addBookmark: UserServices['addBookmark'] = async (cancelToken) => {
+	try {
+		console.log('addBookmark');
 		const promise = new Promise((resolve, reject) => {
 			setTimeout(() => {
 				resolve(true);
@@ -86,9 +124,11 @@ const logout: UserServices['logout'] = async (cancelToken) => {
 };
 
 const services: ObjectFromType<UserServices> = {
-	signUp,
+	createAccount,
+	createToken,
 	signIn,
-	logout,
+	signOff,
+	addBookmark,
 };
 
 const cancellableRequest = (action: keyof UserServices) => {

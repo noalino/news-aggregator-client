@@ -2,35 +2,45 @@ import { useState } from 'react';
 import userApi from '@services/userApi';
 
 interface LoginFormProps {
-	isAuthenticating: boolean;
-	onSubmit: (error: Error | null, event: any) => void;
+	onSubmit: (event: any) => void;
 }
 
-const LoginForm = ({ isAuthenticating, onSubmit }: LoginFormProps) => {
+const LoginForm = ({ onSubmit }: LoginFormProps) => {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [shouldCreateAccount, setShouldCreateAccount] = useState(false);
+	const [isAuthenticating, setIsAuthenticating] = useState(false);
 
 	const handleCheckboxOnChange = ({ target }: any) => {
-		console.log('handleCheckboxOnChange -> target.checked', target.checked);
 		setShouldCreateAccount(target.checked);
 	};
 
-	const handleOnSubmit = (event: any) => {
-		console.log('handleOnSubmit', event);
-		event.preventDefault();
-		let error = null;
+	const authenticate = async () => {
 		if (password.length < 6) {
-			error = new Error('Password must contain at least 6 characters.');
+			throw new Error('Password must contain at least 6 characters.');
 		}
 
 		const credentials = {
 			login,
 			password,
 		};
-		const action = shouldCreateAccount ? 'signUp' : 'signIn';
-		const authenticate = userApi(action).get(credentials);
-		onSubmit(error, authenticate);
+		setIsAuthenticating(true);
+		try {
+			if (shouldCreateAccount) {
+				await userApi('createAccount').get(credentials);
+			}
+			await userApi('createToken').get(credentials);
+			await userApi('signIn').get();
+		} catch (e) {
+			throw e;
+		} finally {
+			setIsAuthenticating(false);
+		}
+	};
+
+	const handleOnSubmit = (event: any) => {
+		event.preventDefault();
+		onSubmit(authenticate);
 	};
 
 	return (
@@ -54,6 +64,7 @@ const LoginForm = ({ isAuthenticating, onSubmit }: LoginFormProps) => {
 					value={password}
 					onChange={({ target }) => setPassword(target.value)}
 					placeholder='Password'
+					minLength={6}
 					required
 				/>
 			</label>

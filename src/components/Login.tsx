@@ -10,36 +10,24 @@ interface LoginProps {
 
 const Login = ({ context }: LoginProps) => {
 	const { isAuthenticated, setIsAuthenticated } = context;
-	const [isAuthenticating, setIsAuthenticating] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 
-	const handleOnSubmit = async (
-		error: Error | null,
-		authenticate: Promise<any>
-	) => {
-		if (error !== null) {
-			setErrorMessage(error.message);
-			return;
-		}
-
-		setIsAuthenticating(true);
+	const handleOnSubmit = async (authenticate: () => Promise<void>) => {
 		try {
-			await authenticate;
+			await authenticate();
 			setIsAuthenticated(true);
 			setErrorMessage('');
 		} catch (error) {
 			setErrorMessage(error.message);
-		} finally {
-			setIsAuthenticating(false);
 		}
 	};
 
 	const handleLogout = async () => {
 		try {
-			await userApi('logout').get();
+			await userApi('signOff').get();
 			setIsAuthenticated(false);
 		} catch (error) {
-			console.log('Logout error:', error);
+			console.log('signOff error:', error);
 		}
 	};
 
@@ -47,10 +35,7 @@ const Login = ({ context }: LoginProps) => {
 		<div id='login-view'>
 			{!isAuthenticated ? (
 				<>
-					<LoginForm
-						onSubmit={handleOnSubmit}
-						isAuthenticating={isAuthenticating}
-					/>
+					<LoginForm onSubmit={handleOnSubmit} />
 					{errorMessage && <p>{errorMessage}</p>}
 				</>
 			) : (
