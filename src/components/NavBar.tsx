@@ -1,5 +1,7 @@
 import { AuthContext, CountryContext } from '@store/context';
 import { Login } from '@components';
+import { ReactComponent as Logo } from '@icons/logo.svg';
+import { ReactComponent as MenuIcon } from '@icons/menu.svg';
 
 interface NavBarProps {
 	isExpanded: boolean;
@@ -10,7 +12,9 @@ const NavBar = ({ isExpanded, toggleExpand }: NavBarProps) => {
 	return (
 		<nav id='navbar' className={isExpanded ? 'expanded' : undefined}>
 			<ul>
-				<li>News</li>
+				<li id='logo'>
+					<Logo />
+				</li>
 				<li className='expand-container'>
 					{isExpanded && (
 						<AuthContext.Consumer>
@@ -18,7 +22,7 @@ const NavBar = ({ isExpanded, toggleExpand }: NavBarProps) => {
 						</AuthContext.Consumer>
 					)}
 					<div id='expand-button' onClick={() => toggleExpand(!isExpanded)}>
-						<div />
+						<MenuIcon />
 					</div>
 				</li>
 				<li>
