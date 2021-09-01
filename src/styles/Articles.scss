@@ -65,12 +65,23 @@
 		color: #555;
 	}
 
-	.open-link {
-		width: 100%;
+	.bottom-actions {
+		display: flex;
+	}
+
+	.open-article-link {
+		flex: 1;
 		text-decoration: none;
 		padding: 5px;
 		background-color: lightgreen;
 		color: inherit;
 		text-align: center;
+	}
+
+	.add-bookmark {
+		flex: 1;
+		background-color: lightcoral;
+		border: none;
+		cursor: pointer;
 	}
 }

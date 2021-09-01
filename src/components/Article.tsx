@@ -1,12 +1,8 @@
-// import { format as formatDate } from 'date-fns';
-// import { formatRelative as formatDate } from 'date-fns';
 import { formatDistance as formatDate } from 'date-fns';
 import { enUS, fr } from 'date-fns/locale';
+import userApi from '@services/userApi';
 
-const Article = ({ article, language }: any) => {
-	// const formattedDate = formatDate(new Date(article.publishedAt), 'P', {
-	// 	locale: fr,
-	// });
+const Article = ({ article, language, showAddBookmark }: any) => {
 	let locale;
 	switch (language) {
 		case 'fr':
@@ -21,6 +17,9 @@ const Article = ({ article, language }: any) => {
 		locale,
 		addSuffix: true,
 	});
+	const addBookmark = () => {
+		userApi('addBookmark').get();
+	};
 
 	return (
 		<article className='article'>
@@ -39,9 +38,16 @@ const Article = ({ article, language }: any) => {
 				{article.author && <em className='author'>by {article.author}</em>}
 			</div>
 			{article.url && (
-				<a className='open-link' href={article.url}>
-					Read now
-				</a>
+				<div className='bottom-actions'>
+					<a className='open-article-link' href={article.url}>
+						Read now
+					</a>
+					{showAddBookmark && (
+						<button className='add-bookmark' onClick={() => addBookmark()}>
+							Bookmark
+						</button>
+					)}
+				</div>
 			)}
 		</article>
 	);

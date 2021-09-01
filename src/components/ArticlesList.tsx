@@ -1,4 +1,4 @@
-import { CountryContext } from '@config/context';
+import { AuthContext, CountryContext } from '@config/context';
 import { Article } from '@components';
 import '@styles/Articles.scss';
 
@@ -9,13 +9,22 @@ type ArticlesListProps = {
 const ArticlesList = ({ articles }: ArticlesListProps) => {
 	return (
 		<div className='articles'>
-			<CountryContext.Consumer>
-				{({ country }) =>
-					articles.map((article, index) => (
-						<Article key={index} article={article} language={country} />
-					))
-				}
-			</CountryContext.Consumer>
+			<AuthContext.Consumer>
+				{({ isAuthenticated }) => (
+					<CountryContext.Consumer>
+						{({ country }) =>
+							articles.map((article, index) => (
+								<Article
+									key={index}
+									article={article}
+									language={country}
+									showAddBookmark={isAuthenticated}
+								/>
+							))
+						}
+					</CountryContext.Consumer>
+				)}
+			</AuthContext.Consumer>
 		</div>
 	);
 };
