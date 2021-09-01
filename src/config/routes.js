@@ -1,6 +1,7 @@
 import { Redirect } from 'react-router-dom';
+import { AuthContext, CountryContext } from '@config/context';
 import topics from '@config/topics';
-import { ArticlesList, NotFound, TopicsList } from '@components';
+import { NotFoundView, TopicView } from '@views';
 
 const topicsPaths = topics.map(({ name }) => `/${name}`);
 
@@ -13,20 +14,30 @@ const routes = [
 	{
 		path: '/bookmarks',
 		exact: true,
-		children: () => <></>,
+		// children: () => <></>,
+		children: (props) => (
+			<AuthContext.Consumer>
+				{({ isAuthenticated }) =>
+					isAuthenticated ? (
+						<h1>Bookmarks</h1>
+					) : (
+						<Redirect to={topicsPaths[0]} />
+					)
+				}
+			</AuthContext.Consumer>
+		),
 	},
 	{
 		path: '/:topic',
 		exact: true,
 		children: (props) => {
 			if (!topicsPaths.includes(props.location.pathname)) {
-				return <NotFound />;
+				return <NotFoundView />;
 			}
 			return (
-				<>
-					<TopicsList />
-					<ArticlesList number={10} {...props} />
-				</>
+				<CountryContext.Consumer>
+					{(context) => <TopicView {...props} countryContext={context} />}
+				</CountryContext.Consumer>
 			);
 		},
 	},

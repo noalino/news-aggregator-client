@@ -1,8 +1,8 @@
 # News Aggregator Client
 
-A website that enables you to read articles by topics and save them to read later on.
+Front-end of the news aggregator website.
 
-Made with [News API](https://newsapi.org)
+Made with [News API](https://newsapi.org).
 
 ### Requirements
 

@@ -1,4 +1,5 @@
-import { Footer, NavBar } from '@components';
+import { useState } from 'react';
+import { Footer, NavBar, TopicsList } from '@components';
 import '@styles/Layout.scss';
 
 type LayoutProps = {
@@ -6,13 +7,17 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
+	const [isNavExpanded, setIsNavExpanded] = useState(false);
 	return (
 		<>
-			<NavBar />
-			<main>
-				{children}
-				<Footer />
-			</main>
+			<NavBar isExpanded={isNavExpanded} toggleExpand={setIsNavExpanded} />
+			<div id='view'>
+				<TopicsList />
+				<main>
+					{children}
+					<Footer />
+				</main>
+			</div>
 		</>
 	);
 };

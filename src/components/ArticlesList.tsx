@@ -1,15 +1,21 @@
+import { CountryContext } from '@config/context';
 import { Article } from '@components';
+import '@styles/Articles.scss';
 
 type ArticlesListProps = {
-	number: number;
+	articles: any[];
 };
 
-const ArticlesList = (props: ArticlesListProps) => {
+const ArticlesList = ({ articles }: ArticlesListProps) => {
 	return (
-		<div className='ArticlesList'>
-			{Array.from({ length: props.number }).map((_, index) => (
-				<Article key={index} />
-			))}
+		<div className='articles'>
+			<CountryContext.Consumer>
+				{({ country }) =>
+					articles.map((article, index) => (
+						<Article key={index} article={article} language={country} />
+					))
+				}
+			</CountryContext.Consumer>
 		</div>
 	);
 };

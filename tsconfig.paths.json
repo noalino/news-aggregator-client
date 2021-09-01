@@ -5,7 +5,9 @@
 			"@components": ["./src/components"],
 			"@config/*": ["./src/config/*"],
 			"@icons/*": ["./src/icons/*"],
-			"@styles/*": ["./src/styles/*"]
+			"@services/*": ["./src/services/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@views": ["./src/views"]
 		}
 	}
 }
