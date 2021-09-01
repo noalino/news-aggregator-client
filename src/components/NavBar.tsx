@@ -2,6 +2,8 @@ import { AuthContext, CountryContext } from '@store/context';
 import { Login } from '@components';
 import { ReactComponent as Logo } from '@icons/logo.svg';
 import { ReactComponent as MenuIcon } from '@icons/menu.svg';
+import { ReactComponent as USFlag } from '@icons/us-flag.svg';
+import { ReactComponent as FrFlag } from '@icons/fr-flag.svg';
 
 interface NavBarProps {
 	isExpanded: boolean;
@@ -25,12 +27,18 @@ const NavBar = ({ isExpanded, toggleExpand }: NavBarProps) => {
 						<MenuIcon />
 					</div>
 				</li>
-				<li>
+				<li id='countries'>
 					<CountryContext.Consumer>
-						{({ setCountry }) => (
-							<div>
-								<button onClick={() => setCountry('fr')}>FR</button>
-								<button onClick={() => setCountry('us')}>US</button>
+						{({ country, setCountry }) => (
+							<div className='countries-container'>
+								<USFlag
+									onClick={() => setCountry('us')}
+									className={country === 'us' ? 'active' : undefined}
+								/>
+								<FrFlag
+									onClick={() => setCountry('fr')}
+									className={country === 'fr' ? 'active' : undefined}
+								/>
 							</div>
 						)}
 					</CountryContext.Consumer>

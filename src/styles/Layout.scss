@@ -21,9 +21,8 @@
 #navbar {
 	flex: 0 0 60px;
 	display: flex;
-	// background-color: goldenrod;
-	padding: 10px;
-	border-right: solid 2px var(--light-grey);
+	padding: 8px 10px;
+	border-bottom: solid 2px var(--light-grey);
 	overflow: hidden;
 	& > ul {
 		flex: 1;
@@ -35,6 +34,7 @@
 	}
 
 	#logo {
+		flex: 0 0 40px;
 		display: block;
 		height: 40px;
 		width: 40px;
@@ -51,7 +51,6 @@
 	}
 
 	#expand-button {
-		flex: 1 0 20px;
 		display: block;
 		height: 20px;
 		width: 20px;
@@ -70,12 +69,48 @@
 		}
 	}
 
+	#countries {
+		height: 100%;
+		width: auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-left: solid 2px var(--light-grey);
+		border-top: none;
+		.countries-container {
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			& > svg {
+				height: 30px;
+				width: 30px;
+				margin: 0 0 0 10px;
+				cursor: pointer;
+				&:not(.active) {
+					opacity: 0.35;
+				}
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
 	&.expanded {
 		flex: 0 0 250px;
-		& > ul {
-			align-items: flex-start;
-			& > .expand-container {
-				align-self: stretch;
+
+		.expand-container {
+			align-self: stretch;
+			flex-direction: column;
+		}
+
+		#countries {
+			align-items: stretch;
+			.countries-container {
+				flex-direction: column;
+				justify-content: space-evenly;
 			}
 		}
 	}
@@ -103,11 +138,40 @@
 		flex-direction: row;
 	}
 	#navbar {
+		padding: 10px 8px;
+		border-right: solid 2px var(--light-grey);
+		border-bottom: none;
 		& > ul {
 			flex-direction: column;
 		}
+		.expand-container {
+			flex-direction: row;
+		}
 		#expand-button {
+			flex: 1 0 20px;
 			padding: 20px 10px;
+		}
+		#countries {
+			height: auto;
+			width: 100%;
+			border-top: solid 2px var(--light-grey);
+			border-left: none;
+			.countries-container {
+				flex-direction: column;
+				& > svg {
+					margin: 10px 0 0;
+				}
+			}
+		}
+
+		&.expanded {
+			.expand-container {
+				flex-direction: row;
+			}
+			#countries .countries-container {
+				flex-direction: row;
+				justify-content: space-evenly;
+			}
 		}
 	}
 }
