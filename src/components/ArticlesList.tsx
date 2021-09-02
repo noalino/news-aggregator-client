@@ -1,3 +1,4 @@
+import React from 'react';
 import { AuthContext, CountryContext } from '@store/context';
 import { Article } from '@components';
 import '@styles/Articles.scss';
@@ -14,12 +15,15 @@ const ArticlesList = ({ articles }: ArticlesListProps) => {
 					<CountryContext.Consumer>
 						{({ country }) =>
 							articles.map((article, index) => (
-								<Article
-									key={index}
-									article={article}
-									language={country}
-									showAddBookmark={isAuthenticated}
-								/>
+								<React.Fragment key={index}>
+									<Article
+										article={article}
+										language={country}
+										showAddBookmark={isAuthenticated}
+									/>
+									{/* Style for HTML without CSS */}
+									<hr />
+								</React.Fragment>
 							))
 						}
 					</CountryContext.Consumer>

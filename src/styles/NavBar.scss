@@ -1,27 +1,17 @@
 #navbar {
 	flex: 0 0 60px;
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	padding: 8px 10px;
 	border-bottom: solid 2px var(--light-grey);
 	overflow: hidden;
-	& > ul {
-		flex: 1;
-		list-style-type: none;
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
 
 	#logo {
 		flex: 0 0 40px;
 		display: block;
 		height: 40px;
 		width: 40px;
-		& > svg {
-			width: 100%;
-			height: 100%;
-		}
 	}
 
 	.expand-container {
@@ -68,6 +58,7 @@
 		& > svg {
 			width: 100%;
 			height: 100%;
+			fill: var(--black-font-color);
 		}
 	}
 
@@ -120,12 +111,10 @@
 
 @media (min-width: 972px) {
 	#navbar {
+		flex-direction: column;
 		padding: 10px 8px;
 		border-right: solid 2px var(--light-grey);
 		border-bottom: none;
-		& > ul {
-			flex-direction: column;
-		}
 		.expand-container {
 			flex-direction: row;
 		}
