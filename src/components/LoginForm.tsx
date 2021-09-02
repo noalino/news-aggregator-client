@@ -71,16 +71,18 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
 			<button type='submit' disabled={isAuthenticating}>
 				Login
 			</button>
-			<p>Don&apos;t have an account?</p>
-			<label htmlFor='create-account'>
-				<p>Check the box to create one:</p>
-				<input
-					id='create-account'
-					type='checkbox'
-					checked={shouldCreateAccount}
-					onChange={handleCheckboxOnChange}
-				/>
-			</label>
+			<div className='create-account-description'>
+				<p>Don&apos;t have an account?</p>
+				<label htmlFor='create-account'>
+					<input
+						id='create-account'
+						type='checkbox'
+						checked={shouldCreateAccount}
+						onChange={handleCheckboxOnChange}
+					/>
+					<p>Check the box to create one.</p>
+				</label>
+			</div>
 		</form>
 	);
 };

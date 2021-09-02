@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from '@icons/logo.svg';
 import { ReactComponent as MenuIcon } from '@icons/menu.svg';
 import { ReactComponent as USFlag } from '@icons/us-flag.svg';
 import { ReactComponent as FrFlag } from '@icons/fr-flag.svg';
+import '@styles/NavBar.scss';
 
 interface NavBarProps {
 	isExpanded: boolean;
