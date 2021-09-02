@@ -40,14 +40,17 @@
 		&:not(.active) {
 			color: #999;
 		}
-		&:hover {
-			color: initial;
-		}
 	}
 }
 
 @media (min-width: 972px) {
 	#app {
 		flex-direction: row;
+	}
+}
+
+@media (hover: hover) {
+	#topics a:hover {
+		color: initial;
 	}
 }

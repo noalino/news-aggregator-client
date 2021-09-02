@@ -76,17 +76,14 @@
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			& > svg {
-				height: 30px;
-				width: 30px;
-				margin: 0 0 0 10px;
-				cursor: pointer;
-				&:not(.active) {
-					opacity: 0.35;
-				}
-				&:hover {
-					opacity: 1;
-				}
+		}
+		svg {
+			height: 30px;
+			width: 30px;
+			margin: 0 0 0 10px;
+			cursor: pointer;
+			&:not(.active) {
+				opacity: 0.35;
 			}
 		}
 	}
@@ -128,9 +125,9 @@
 			border-left: none;
 			.countries-container {
 				flex-direction: column;
-				& > svg {
-					margin: 10px 0 0;
-				}
+			}
+			svg {
+				margin: 10px 0 0;
 			}
 		}
 
@@ -144,5 +141,11 @@
 				justify-content: space-evenly;
 			}
 		}
+	}
+}
+
+@media (hover: hover) {
+	#navbar #countries svg:hover {
+		opacity: 1;
 	}
 }
