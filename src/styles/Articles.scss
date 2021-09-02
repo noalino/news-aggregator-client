@@ -69,19 +69,36 @@
 		display: flex;
 	}
 
-	.open-article-link {
+	.open-article-link,
+	.add-bookmark {
 		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 13px;
+		font-weight: 500;
+	}
+
+	.open-article-link {
 		text-decoration: none;
-		padding: 5px;
+		text-transform: uppercase;
 		background-color: lightgreen;
 		color: inherit;
 		text-align: center;
 	}
 
 	.add-bookmark {
-		flex: 1;
+		flex-direction: column;
 		background-color: lightcoral;
+		padding: 2px 0;
 		border: none;
 		cursor: pointer;
+		& > span:first-child {
+			text-transform: uppercase;
+		}
+		& > span:not(:first-child) {
+			font-size: 11px;
+			font-weight: normal;
+		}
 	}
 }

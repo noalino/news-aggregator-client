@@ -44,7 +44,8 @@ const Article = ({ article, language, showAddBookmark }: any) => {
 					</a>
 					{showAddBookmark && (
 						<button className='add-bookmark' onClick={() => addBookmark()}>
-							Bookmark
+							<span>Add</span>
+							<span> to Bookmarks</span>
 						</button>
 					)}
 				</div>
