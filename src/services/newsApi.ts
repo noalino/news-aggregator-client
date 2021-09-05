@@ -27,11 +27,7 @@ type ObjectFromType<Type> = {
 };
 
 const axiosInstance = axios.create({
-	// baseURL: '/newsApi',
-	baseURL: 'https://newsapi.org/v2',
-	headers: {
-		'X-Api-Key': process.env.REACT_APP_NEWS_API_KEY,
-	},
+	baseURL: '/api',
 });
 
 const getTopHeadlines: NewsServices['getTopHeadlines'] = async (
@@ -39,11 +35,11 @@ const getTopHeadlines: NewsServices['getTopHeadlines'] = async (
 	params
 ) => {
 	try {
-		const { data } = await axiosInstance.get('/top-headlines', {
+		const { data: articles } = await axiosInstance.get('/news', {
 			cancelToken,
 			params,
 		});
-		return data.articles;
+		return articles;
 	} catch (err) {
 		if (axios.isCancel(err)) {
 			console.log('request is canceled:', err.message);
