@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { Redirect, RouteChildrenProps } from 'react-router-dom';
 import { AuthContext, CountryContext } from '@store/context';
 import topics from '@config/topics';
 import { NotFoundView, TopicView } from '@views';
@@ -14,8 +14,7 @@ const routes = [
 	{
 		path: '/bookmarks',
 		exact: true,
-		// children: () => <></>,
-		children: (props) => (
+		children: () => (
 			<AuthContext.Consumer>
 				{({ isAuthenticated }) =>
 					isAuthenticated ? (
@@ -30,7 +29,7 @@ const routes = [
 	{
 		path: '/:topic',
 		exact: true,
-		children: (props) => {
+		children: (props: RouteChildrenProps) => {
 			if (!topicsPaths.includes(props.location.pathname)) {
 				return <NotFoundView />;
 			}

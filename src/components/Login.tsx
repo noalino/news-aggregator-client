@@ -36,7 +36,11 @@ const Login = ({ context }: LoginProps) => {
 			{!isAuthenticated ? (
 				<>
 					<LoginForm onSubmit={handleOnSubmit} />
-					{errorMessage && <p>{errorMessage}</p>}
+					{errorMessage && (
+						<div className='login-error-message'>
+							<p>{errorMessage}</p>
+						</div>
+					)}
 				</>
 			) : (
 				<>

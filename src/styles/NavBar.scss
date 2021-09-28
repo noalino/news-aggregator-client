@@ -1,11 +1,11 @@
 #navbar {
 	flex: 0 0 60px;
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 8px 10px;
 	border-bottom: solid 2px var(--light-grey);
-	overflow: hidden;
 
 	#logo {
 		flex: 0 0 40px;
@@ -17,6 +17,10 @@
 	.expand-container {
 		display: flex;
 		align-items: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	#login-view {
@@ -30,10 +34,29 @@
 		display: flex;
 		flex-direction: column;
 		padding: 0 15px;
+
+		& > * {
+			margin-bottom: 7px;
+		}
+
 		input[type='email'],
 		input[type='password'] {
 			width: 100%;
+			padding: 3px;
 		}
+
+		button[type='submit'] {
+			background-color: hsl(342, 100, 50);
+			color: white;
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 12px;
+			padding: 4px 2px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
 		.create-account-description {
 			display: flex;
 			flex-direction: column;
@@ -43,8 +66,21 @@
 			}
 			p {
 				display: inline;
+				margin-bottom: 2px;
 			}
 		}
+	}
+
+	.login-error-message {
+		position: absolute;
+		top: 100%;
+		font-size: 12px;
+		color: red;
+		background-color: white;
+		padding: 10px 15px;
+		margin: 0 15px 10px;
+		border: solid 1px red;
+		border-radius: 3px;
 	}
 
 	#expand-button {
@@ -112,8 +148,17 @@
 		padding: 10px 8px;
 		border-right: solid 2px var(--light-grey);
 		border-bottom: none;
+		#login-view {
+			position: relative;
+		}
 		.expand-container {
 			flex-direction: row;
+			left: initial;
+			transform: translateY(-50%);
+		}
+		.login-error-message {
+			top: initial;
+			bottom: 100%;
 		}
 		#expand-button {
 			padding: 20px 10px;
@@ -145,7 +190,10 @@
 }
 
 @media (hover: hover) {
-	#navbar #countries svg:hover {
+	#countries svg:hover {
 		opacity: 1;
+	}
+	#navbar #login-form button[type='submit']:hover {
+		background-color: hsl(342, 100, 35);
 	}
 }

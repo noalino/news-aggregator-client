@@ -64,7 +64,6 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
 					value={password}
 					onChange={({ target }) => setPassword(target.value)}
 					placeholder='Password'
-					minLength={6}
 					required
 				/>
 			</label>
