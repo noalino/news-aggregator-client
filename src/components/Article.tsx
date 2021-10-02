@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { formatDistance as formatDate } from 'date-fns';
 import { enUS, fr } from 'date-fns/locale';
 import userApi from '@services/userApi';
 
 const Article = ({ article, language, showAddBookmark }: any) => {
+	const [isBookmarked, setIsBookmarked] = useState(false);
 	let locale;
 	switch (language) {
 		case 'fr':
@@ -17,18 +19,29 @@ const Article = ({ article, language, showAddBookmark }: any) => {
 		locale,
 		addSuffix: true,
 	});
-	const addBookmark = () => {
-		userApi('addBookmark').get();
+	const addBookmark = async () => {
+		if (isBookmarked) {
+			return;
+		}
+		await userApi('addBookmark').get();
+		setIsBookmarked(true);
 	};
 
 	return (
-		<article className='article'>
+		<article className={`article${isBookmarked ? ' bookmarked' : ''}`}>
 			<div className='content'>
-				{article.publishedAt && (
-					<div className='published-date'>
-						<p>{formattedDate}</p>
-					</div>
-				)}
+				<div className='content-top'>
+					<button
+						className='add-bookmark'
+						onClick={() => addBookmark()}
+						disabled={!showAddBookmark}
+					>
+						{isBookmarked ? 'Added to Bookmarks' : '+ Add to Bookmarks'}
+					</button>
+					{article.publishedAt && (
+						<p className='published-date'>{formattedDate}</p>
+					)}
+				</div>
 				{article.source?.name && (
 					<div className='source'>
 						<h3>{article.source.name}</h3>
@@ -42,12 +55,6 @@ const Article = ({ article, language, showAddBookmark }: any) => {
 					<a className='open-article-link' href={article.url}>
 						Read now
 					</a>
-					{showAddBookmark && (
-						<button className='add-bookmark' onClick={() => addBookmark()}>
-							<span>Add</span>
-							<span> to Bookmarks</span>
-						</button>
-					)}
 				</div>
 			)}
 		</article>

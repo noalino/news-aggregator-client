@@ -46,7 +46,7 @@
 		}
 
 		button[type='submit'] {
-			background-color: hsl(342, 100, 50);
+			background-color: var(--vivid-red);
 			color: white;
 			font-weight: bold;
 			text-transform: uppercase;
@@ -194,6 +194,6 @@
 		opacity: 1;
 	}
 	#navbar #login-form button[type='submit']:hover {
-		background-color: hsl(342, 100, 35);
+		background-color: var(--darker-vivid-red);
 	}
 }
