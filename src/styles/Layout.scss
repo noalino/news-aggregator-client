@@ -20,7 +20,10 @@
 
 #footer {
 	flex: 0 0 150px;
-	background-color: grey;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	padding-bottom: 30px;
 	overflow: hidden;
 }
 
