@@ -11,6 +11,7 @@ interface LoginProps {
 const Login = ({ context }: LoginProps) => {
 	const { isAuthenticated, setIsAuthenticated } = context;
 	const [errorMessage, setErrorMessage] = useState('');
+	const [isLoggingOut, setIsLoggingOut] = useState(false);
 
 	const handleOnSubmit = async (authenticate: () => Promise<void>) => {
 		try {
@@ -24,10 +25,13 @@ const Login = ({ context }: LoginProps) => {
 
 	const handleLogout = async () => {
 		try {
+			setIsLoggingOut(true);
 			await userApi('signOff').get();
 			setIsAuthenticated(false);
 		} catch (error) {
 			console.log('signOff error:', error);
+		} finally {
+			setIsLoggingOut(false);
 		}
 	};
 
@@ -45,7 +49,9 @@ const Login = ({ context }: LoginProps) => {
 			) : (
 				<>
 					<Link to='/bookmarks'>Bookmarks</Link>
-					<button onClick={handleLogout}>Logout</button>
+					<button id='logout' onClick={handleLogout} disabled={isLoggingOut}>
+						Logout
+					</button>
 				</>
 			)}
 		</div>

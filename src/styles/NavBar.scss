@@ -25,15 +25,21 @@
 
 	#login-view {
 		flex: 1;
+		min-width: 200px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		padding: 0 15px;
+
+		a {
+			color: inherit;
+			text-align: center;
+		}
 	}
 
 	#login-form {
 		display: flex;
 		flex-direction: column;
-		padding: 0 15px;
 
 		& > * {
 			margin-bottom: 7px;
@@ -43,18 +49,6 @@
 		input[type='password'] {
 			width: 100%;
 			padding: 3px;
-		}
-
-		button[type='submit'] {
-			background-color: var(--vivid-red);
-			color: white;
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 12px;
-			padding: 4px 2px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
 		}
 
 		.create-account-description {
@@ -69,6 +63,28 @@
 				margin-bottom: 2px;
 			}
 		}
+	}
+
+	#login-form button[type='submit'],
+	#logout {
+		background-color: var(--vivid-red);
+		color: white;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 12px;
+		padding: 4px 2px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+
+		&:disabled {
+			background-color: var(--darker-vivid-red);
+			cursor: wait;
+		}
+	}
+
+	#logout {
+		margin-top: 25px;
 	}
 
 	.login-error-message {
@@ -129,6 +145,7 @@
 
 		.expand-container {
 			align-self: stretch;
+			height: 100%;
 			flex-direction: column;
 		}
 
@@ -153,8 +170,6 @@
 		}
 		.expand-container {
 			flex-direction: row;
-			left: initial;
-			transform: translateY(-50%);
 		}
 		.login-error-message {
 			top: initial;
@@ -180,6 +195,8 @@
 			flex: 0 0 250px;
 			.expand-container {
 				flex-direction: row;
+				height: auto;
+				width: 100%;
 			}
 			#countries .countries-container {
 				flex-direction: row;
@@ -193,7 +210,8 @@
 	#countries svg:hover {
 		opacity: 1;
 	}
-	#navbar #login-form button[type='submit']:hover {
+	#navbar #login-form button[type='submit']:hover,
+	#navbar #logout:hover {
 		background-color: var(--darker-vivid-red);
 	}
 }
