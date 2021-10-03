@@ -15,9 +15,8 @@ const TopicView = ({ location, countryContext }: any) => {
 				category: location.pathname.slice(1),
 				country: countryContext.country,
 			})
-			.then((res) => {
-				console.log('TopicView mounted -> getTopHeadlines:', res);
-				setArticles(res);
+			.then((data) => {
+				setArticles(data);
 			})
 			.catch((error) => {
 				console.log('[SERVICE] Cannot getTopHeadlines:', error.toJSON());

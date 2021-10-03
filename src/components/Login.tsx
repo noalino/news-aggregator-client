@@ -15,21 +15,24 @@ const Login = ({ context }: LoginProps) => {
 
 	const handleOnSubmit = async (authenticate: () => Promise<void>) => {
 		try {
+			setErrorMessage('');
 			await authenticate();
 			setIsAuthenticated(true);
 			setErrorMessage('');
 		} catch (error) {
-			setErrorMessage(error.message);
+			setErrorMessage(error.response?.data?.reason ?? error);
 		}
 	};
 
 	const handleLogout = async () => {
 		try {
+			setErrorMessage('');
 			setIsLoggingOut(true);
 			await userApi('signOff').get();
+			setErrorMessage('');
 			setIsAuthenticated(false);
 		} catch (error) {
-			console.log('signOff error:', error);
+			setErrorMessage(error.response?.data?.reason ?? error);
 		} finally {
 			setIsLoggingOut(false);
 		}

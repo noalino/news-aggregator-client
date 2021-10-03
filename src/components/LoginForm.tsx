@@ -29,8 +29,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
 			if (shouldCreateAccount) {
 				await userApi('createAccount').get(credentials);
 			}
-			await userApi('createToken').get(credentials);
-			await userApi('signIn').get();
+			await userApi('signIn').get(credentials);
 		} catch (e) {
 			throw e;
 		} finally {

@@ -27,7 +27,7 @@ type ObjectFromType<Type> = {
 };
 
 const axiosInstance = axios.create({
-	baseURL: '/api',
+	baseURL: process.env.REACT_APP_API_URL,
 });
 
 const getTopHeadlines: NewsServices['getTopHeadlines'] = async (
@@ -41,11 +41,6 @@ const getTopHeadlines: NewsServices['getTopHeadlines'] = async (
 		});
 		return articles;
 	} catch (err) {
-		if (axios.isCancel(err)) {
-			console.log('request is canceled:', err.message);
-		} else {
-			console.log('fetch error:', err);
-		}
 		return [];
 	}
 };
