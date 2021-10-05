@@ -15,7 +15,12 @@ interface UserServices {
 		{ login, password }: Credentials
 	) => Promise<void>;
 	signOff: (cancelToken: CancelTokenType) => Promise<void>;
-	addBookmark: (cancelToken: CancelTokenType) => Promise<void>;
+	addBookmark: (cancelToken: CancelTokenType, article: any) => Promise<void>;
+	deleteBookmark: (
+		cancelToken: CancelTokenType,
+		articleId: string
+	) => Promise<void>;
+	getBookmarks: (cancelToken: CancelTokenType) => Promise<any>;
 }
 
 type ObjectFromType<Type> = {
@@ -73,6 +78,7 @@ const signOff: UserServices['signOff'] = async (cancelToken) => {
 			{},
 			{
 				cancelToken,
+				withCredentials: true,
 			}
 		);
 	} catch (err) {
@@ -80,21 +86,52 @@ const signOff: UserServices['signOff'] = async (cancelToken) => {
 	}
 };
 
-const addBookmark: UserServices['addBookmark'] = async (cancelToken) => {
+const addBookmark: UserServices['addBookmark'] = async (
+	cancelToken,
+	article
+) => {
 	try {
-		console.log('addBookmark');
-		const promise = new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(true);
-			}, 2000);
-		});
-		await promise;
+		await axiosInstance.post(
+			'/bookmarks',
+			{
+				article,
+			},
+			{
+				cancelToken,
+				withCredentials: true,
+			}
+		);
 	} catch (err) {
-		if (axios.isCancel(err)) {
-			console.log('request is canceled:', err.message);
-		} else {
-			console.log('fetch error:', err);
-		}
+		throw err;
+	}
+};
+
+const deleteBookmark: UserServices['deleteBookmark'] = async (
+	cancelToken,
+	articleId
+) => {
+	try {
+		await axiosInstance.delete('/bookmarks', {
+			cancelToken,
+			data: {
+				id: articleId,
+			},
+			withCredentials: true,
+		});
+	} catch (err) {
+		throw err;
+	}
+};
+
+const getBookmarks: UserServices['getBookmarks'] = async (cancelToken) => {
+	try {
+		const { data: articles } = await axiosInstance.get('/bookmarks', {
+			cancelToken,
+			withCredentials: true,
+		});
+		return articles;
+	} catch (err) {
+		throw err;
 	}
 };
 
@@ -103,6 +140,8 @@ const services: ObjectFromType<UserServices> = {
 	signIn,
 	signOff,
 	addBookmark,
+	deleteBookmark,
+	getBookmarks,
 };
 
 const cancellableRequest = (action: keyof UserServices) => {

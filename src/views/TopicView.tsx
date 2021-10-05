@@ -7,8 +7,6 @@ const TopicView = ({ location, countryContext }: any) => {
 
 	useEffect(() => {
 		// https://academind.com/tutorials/useeffect-abort-http-requests/
-		// TODO Use props to extract topic from route, & set as useEffect hook variable
-		// TODO Hook to handle country change
 		const request = newsApi('getTopHeadlines');
 		request
 			.get({
@@ -22,7 +20,7 @@ const TopicView = ({ location, countryContext }: any) => {
 				console.log('[SERVICE] Cannot getTopHeadlines:', error.toJSON());
 			});
 
-		return () => request.cancel('TopicView id unmounted');
+		return () => request.cancel('TopicView is unmounted');
 	}, [location.pathname, countryContext.country]);
 	return <ArticlesList articles={articles} />;
 };

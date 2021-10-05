@@ -33,12 +33,11 @@
 		align-items: center;
 		margin-bottom: 10px;
 		max-width: 100%;
-		.add-bookmark {
+		.add-bookmark,
+		.delete-bookmark {
 			font-size: 12px;
 			font-weight: 500;
-			color: gray;
 			background-color: transparent;
-			border: solid 1px gray;
 			border-radius: 14px;
 			padding: 2px 8px;
 			&:not(:disabled) {
@@ -46,6 +45,10 @@
 				border: solid 1px var(--black-font-color);
 				cursor: pointer;
 			}
+		}
+		.add-bookmark {
+			color: gray;
+			border: solid 1px gray;
 		}
 		.published-date {
 			font-size: 12px;
@@ -114,7 +117,8 @@
 }
 
 @media (hover: hover) {
-	.content-top .add-bookmark:hover:not(:disabled) {
+	.content-top .add-bookmark:hover:not(:disabled),
+	.content-top .delete-bookmark:hover:not(:disabled) {
 		color: white;
 		background-color: var(--black-font-color);
 	}

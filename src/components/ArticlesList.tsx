@@ -1,13 +1,19 @@
 import React from 'react';
 import { AuthContext, CountryContext } from '@store/context';
-import { Article } from '@components';
+import { Article, ArticleType } from '@components';
 import '@styles/Articles.scss';
 
 type ArticlesListProps = {
-	articles: any[];
+	articles: ArticleType[];
+	isBookmarked?: boolean;
+	removeArticle?: (id: string) => void;
 };
 
-const ArticlesList = ({ articles }: ArticlesListProps) => {
+const ArticlesList = ({
+	articles,
+	isBookmarked,
+	removeArticle,
+}: ArticlesListProps) => {
 	return (
 		<div className='articles'>
 			<AuthContext.Consumer>
@@ -20,6 +26,8 @@ const ArticlesList = ({ articles }: ArticlesListProps) => {
 										article={article}
 										language={country}
 										showAddBookmark={isAuthenticated}
+										isBookmarked={isBookmarked}
+										removeArticle={removeArticle}
 									/>
 									{/* Style for HTML without CSS */}
 									<hr />

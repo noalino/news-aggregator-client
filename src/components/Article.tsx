@@ -3,7 +3,32 @@ import { formatDistance as formatDate } from 'date-fns';
 import { enUS, fr } from 'date-fns/locale';
 import userApi from '@services/userApi';
 
-const Article = ({ article, language, showAddBookmark }: any) => {
+export type ArticleType = {
+	id: string;
+	author: string;
+	publishedAt: Date;
+	source: {
+		name: string;
+	};
+	title: string;
+	url: string;
+};
+
+interface ArticleProps {
+	article: ArticleType;
+	language: string;
+	showAddBookmark: boolean;
+	isBookmarked?: boolean;
+	removeArticle?: (id: string) => void;
+}
+
+const Article = ({
+	article,
+	language,
+	showAddBookmark,
+	isBookmarked: canDeleteBookmark,
+	removeArticle = () => {},
+}: ArticleProps) => {
 	const [isBookmarked, setIsBookmarked] = useState(false);
 	let locale;
 	switch (language) {
@@ -23,21 +48,43 @@ const Article = ({ article, language, showAddBookmark }: any) => {
 		if (isBookmarked) {
 			return;
 		}
-		await userApi('addBookmark').get();
-		setIsBookmarked(true);
+		try {
+			await userApi('addBookmark').get({ ...article, id: article.url });
+			setIsBookmarked(true);
+		} catch (e) {
+			console.error('Cannot add article into bookmarks:', e);
+		}
+	};
+
+	const deleteBookmark = async (id: string) => {
+		try {
+			await userApi('deleteBookmark').get(id);
+			removeArticle(id);
+		} catch (e) {
+			console.error('Cannot remove article:', e);
+		}
 	};
 
 	return (
 		<article className={`article${isBookmarked ? ' bookmarked' : ''}`}>
 			<div className='content'>
 				<div className='content-top'>
-					<button
-						className='add-bookmark'
-						onClick={() => addBookmark()}
-						disabled={!showAddBookmark}
-					>
-						{isBookmarked ? 'Added to Bookmarks' : '+ Add to Bookmarks'}
-					</button>
+					{canDeleteBookmark ? (
+						<button
+							className='delete-bookmark'
+							onClick={() => deleteBookmark(article.url)}
+						>
+							Remove from Bookmarks
+						</button>
+					) : (
+						<button
+							className='add-bookmark'
+							onClick={() => addBookmark()}
+							disabled={!showAddBookmark}
+						>
+							{isBookmarked ? 'Added to Bookmarks' : '+ Add to Bookmarks'}
+						</button>
+					)}
 					{article.publishedAt && (
 						<p className='published-date'>{formattedDate}</p>
 					)}

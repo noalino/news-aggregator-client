@@ -1,5 +1,5 @@
 // See ref: https://newsapi.org/docs/endpoints/top-headlines
-const topics = [
+const topics: ReadonlyArray<{ name: string }> = [
 	{
 		name: 'general',
 	},

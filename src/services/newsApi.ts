@@ -41,7 +41,7 @@ const getTopHeadlines: NewsServices['getTopHeadlines'] = async (
 		});
 		return articles;
 	} catch (err) {
-		return [];
+		throw err;
 	}
 };
 
