@@ -18,6 +18,30 @@
 	}
 }
 
+#cookies-popin {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--darker-vivid-red);
+	border: 1px solid var(--vivid-red);
+	p {
+		color: white;
+		margin-right: 15px;
+	}
+	button {
+		background-color: var(--light-blue);
+		border: none;
+		border-radius: 5px;
+		padding: 5px;
+		cursor: pointer;
+	}
+}
+
 #bookmarks-title {
 	margin: 10px;
 }

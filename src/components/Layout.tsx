@@ -8,6 +8,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
+	const [isCookiesAccepted, setIsCookiesAccepted] = useState(false);
 	return (
 		<>
 			<NavBar isExpanded={isNavExpanded} toggleExpand={setIsNavExpanded} />
@@ -18,6 +19,12 @@ const Layout = ({ children }: LayoutProps) => {
 					<Footer />
 				</main>
 			</div>
+			{!isCookiesAccepted && (
+				<div id='cookies-popin'>
+					<p>This website uses cookies.</p>
+					<button onClick={() => setIsCookiesAccepted(true)}>Got it!</button>
+				</div>
+			)}
 		</>
 	);
 };
