@@ -1,19 +1,18 @@
 .articles {
 	max-width: 100%;
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 10px 15px;
+	padding: 10px;
 	hr {
 		display: none;
 	}
 }
 
 .article {
-	flex: 1 1 300px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin: 10px;
 	border: solid 1px black;
 	border-radius: 10px;
 	overflow: hidden;
