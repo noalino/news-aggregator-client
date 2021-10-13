@@ -6,36 +6,36 @@ import { BookmarksView, NotFoundView, TopicView } from '@views';
 const topicsPaths = topics.map(({ name }) => `/${name}`);
 
 const routes = [
-	{
-		path: '/',
-		exact: true,
-		children: () => <Redirect to={topicsPaths[0]} />,
-	},
-	{
-		path: '/bookmarks',
-		exact: true,
-		children: () => (
-			<AuthContext.Consumer>
-				{({ isAuthenticated }) =>
-					isAuthenticated ? <BookmarksView /> : <Redirect to={topicsPaths[0]} />
-				}
-			</AuthContext.Consumer>
-		),
-	},
-	{
-		path: '/:topic',
-		exact: true,
-		children: (props: RouteChildrenProps) => {
-			if (!topicsPaths.includes(props.location.pathname)) {
-				return <NotFoundView />;
-			}
-			return (
-				<CountryContext.Consumer>
-					{(context) => <TopicView {...props} countryContext={context} />}
-				</CountryContext.Consumer>
-			);
-		},
-	},
+  {
+    path: '/',
+    exact: true,
+    children: () => <Redirect to={topicsPaths[0]} />,
+  },
+  {
+    path: '/bookmarks',
+    exact: true,
+    children: () => (
+      <AuthContext.Consumer>
+        {({ isAuthenticated }) =>
+          isAuthenticated ? <BookmarksView /> : <Redirect to={topicsPaths[0]} />
+        }
+      </AuthContext.Consumer>
+    ),
+  },
+  {
+    path: '/:topic',
+    exact: true,
+    children: (props: RouteChildrenProps) => {
+      if (!topicsPaths.includes(props.location.pathname)) {
+        return <NotFoundView />;
+      }
+      return (
+        <CountryContext.Consumer>
+          {(context) => <TopicView {...props} countryContext={context} />}
+        </CountryContext.Consumer>
+      );
+    },
+  },
 ];
 
 export default routes;

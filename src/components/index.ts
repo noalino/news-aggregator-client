@@ -12,14 +12,14 @@ import { default as TopicsList } from './TopicsList';
 import type { ArticleType } from './Article';
 
 export {
-	Article,
-	ArticlesList,
-	Footer,
-	Layout,
-	Login,
-	LoginForm,
-	NavBar,
-	TopicsList,
+  Article,
+  ArticlesList,
+  Footer,
+  Layout,
+  Login,
+  LoginForm,
+  NavBar,
+  TopicsList,
 };
 
 export type { ArticleType };
