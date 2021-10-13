@@ -1,0 +1,219 @@
+#navbar {
+  flex: 0 0 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: solid 2px var(--light-grey);
+
+  #logo {
+    flex: 0 0 40px;
+    display: block;
+    height: 40px;
+    width: 40px;
+  }
+
+  .expand-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #login-view {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 15px;
+
+    a {
+      color: inherit;
+      text-align: center;
+    }
+  }
+
+  #login-form {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      margin-bottom: 7px;
+    }
+
+    input[type='email'],
+    input[type='password'] {
+      width: 100%;
+      padding: 3px;
+    }
+
+    .create-account-description {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      input[type='checkbox'] {
+        margin-right: 5px;
+      }
+      p {
+        display: inline;
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  #login-form button[type='submit'],
+  #logout {
+    background-color: var(--vivid-red);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 4px 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: var(--darker-vivid-red);
+      cursor: wait;
+    }
+  }
+
+  #logout {
+    margin-top: 25px;
+  }
+
+  .login-error-message {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    color: red;
+    background-color: white;
+    padding: 10px 15px;
+    margin: 0 15px 10px;
+    border: solid 1px red;
+    border-radius: 3px;
+  }
+
+  #expand-button {
+    flex: 0 0 20px;
+    display: block;
+    height: 20px;
+    width: 20px;
+    box-sizing: content-box;
+    padding: 10px 20px;
+    cursor: pointer;
+    & > svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--black-font-color);
+    }
+  }
+
+  #countries {
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: solid 2px var(--light-grey);
+    border-top: none;
+    .countries-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    svg {
+      height: 30px;
+      width: 30px;
+      margin: 0 0 0 10px;
+      cursor: pointer;
+      &:not(.active) {
+        opacity: 0.35;
+      }
+    }
+  }
+
+  &.expanded {
+    flex: 0 0 200px;
+
+    .expand-container {
+      align-self: stretch;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    #countries {
+      align-items: stretch;
+      .countries-container {
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@media (min-width: 972px) {
+  #navbar {
+    flex-direction: column;
+    padding: 10px 8px;
+    border-right: solid 2px var(--light-grey);
+    border-bottom: none;
+    #login-view {
+      position: relative;
+    }
+    .expand-container {
+      flex-direction: row;
+    }
+    .login-error-message {
+      top: initial;
+      bottom: 100%;
+    }
+    #expand-button {
+      padding: 20px 10px;
+    }
+    #countries {
+      height: auto;
+      width: 100%;
+      border-top: solid 2px var(--light-grey);
+      border-left: none;
+      .countries-container {
+        flex-direction: column;
+      }
+      svg {
+        margin: 10px 0 0;
+      }
+    }
+
+    &.expanded {
+      flex: 0 0 250px;
+      .expand-container {
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+      }
+      #countries .countries-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  #countries svg:hover {
+    opacity: 1;
+  }
+  #navbar #login-form button[type='submit']:hover,
+  #navbar #logout:hover {
+    background-color: var(--darker-vivid-red);
+  }
+}
