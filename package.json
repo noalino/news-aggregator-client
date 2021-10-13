@@ -1,94 +1,63 @@
 {
-  "name": "news-aggregator-app-front",
-  "version": "0.1.0",
-  "description": "News Aggregator App Front",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "webpack --mode development",
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open",
-    "test": "jest"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "jest-enzyme",
-    "testEnvironment": "enzyme",
-    "testEnvironmentOptions": {
-      "enzymeAdapter": "react16"
-    },
-    "moduleNameMapper": {
-      "\\.(s?css|less)$": "identity-obj-proxy"
-    }
-  },
-  "browserslist": [
-    "last 2 versions",
-    "> 0.2%",
-    "not dead"
-  ],
-  "keywords": [
-    "news",
-    "articles",
-    "latest news"
-  ],
-  "author": "Benoît Gelineau",
-  "license": "MIT",
-  "dependencies": {
-    "autoprefixer": "^9.2.0",
-    "axios": "^0.18.0",
-    "css-mqpacker": "^7.0.0",
-    "cssnano": "^4.1.4",
-    "moment": "^2.22.2",
-    "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-datepicker": "^1.8.0",
-    "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-    "react-transition-group": "^2.4.0",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.14"
-  },
-  "devDependencies": {
-    "axios-mock-adapter": "^1.15.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "browser-sync": "^2.26.3",
-    "browser-sync-webpack-plugin": "^2.2.2",
-    "browserslist": "^4.3.4",
-    "clean-webpack-plugin": "^0.1.19",
-    "compression-webpack-plugin": "^2.0.0",
-    "css-loader": "^1.0.0",
-    "dotenv": "^6.1.0",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-jest-enzyme": "^7.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.25.1",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
-    "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.6.0",
-    "jest-environment-enzyme": "^7.0.0",
-    "jest-enzyme": "^7.0.0",
-    "mini-css-extract-plugin": "^0.4.1",
-    "node-sass": "^4.9.3",
-    "postcss-loader": "^3.0.0",
-    "redux-mock-store": "^1.5.3",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.22.1",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.14"
-  }
+	"name": "news-aggregator-client",
+	"version": "2.0.0",
+	"private": true,
+	"scripts": {
+		"start": "craco start",
+		"build": "craco build",
+		"test": "craco test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"dependencies": {
+		"@craco/craco": "^6.2.0",
+		"@testing-library/jest-dom": "^5.11.4",
+		"@testing-library/react": "^11.1.0",
+		"@testing-library/user-event": "^12.1.10",
+		"@types/jest": "^26.0.15",
+		"@types/node": "^12.0.0",
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"axios": "^0.21.1",
+		"date-fns": "^2.23.0",
+		"node-sass": "^5.0.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "4.0.3",
+		"typescript": "^4.1.2",
+		"web-vitals": "^1.0.1"
+	},
+	"devDependencies": {
+		"@types/react-router-dom": "^5.1.8",
+		"@typescript-eslint/eslint-plugin": "^4.0.0",
+		"@typescript-eslint/parser": "^4.0.0",
+		"babel-eslint": "^10.0.0",
+		"eslint": "^7.5.0",
+		"eslint-config-react-app": "^6.0.0",
+		"eslint-plugin-flowtype": "^5.2.0",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-jest": "^24.0.0",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-react": "^7.20.3",
+		"eslint-plugin-react-hooks": "^4.0.8",
+		"eslint-plugin-testing-library": "^3.9.0"
+	}
 }

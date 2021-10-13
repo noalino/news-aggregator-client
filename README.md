@@ -1,10 +1,10 @@
 # News Aggregator Client
 
-A website that enables you to read headlines by topics, search for news articles and save them to read them later on.
+Front-end of the news aggregator website.
 
-Made with [News API](https://newsapi.org/).
+Made with [News API](https://newsapi.org).
 
-Environment variables:
-- `NODE_ENV`: Node environment (i.e. `development` | `production`)
-- `APP_URL`: URL of the site
-- `API_KEY`: News API key
+### Requirements
+
+- Node v14 LTS
+- Yarn v1

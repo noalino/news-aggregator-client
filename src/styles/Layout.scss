@@ -1,0 +1,88 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#view {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  & > main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+}
+
+#cookies-popin {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darker-vivid-red);
+  border: 1px solid var(--vivid-red);
+  p {
+    color: white;
+    margin-right: 15px;
+  }
+  button {
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+#bookmarks-title {
+  margin: 10px;
+}
+
+#footer {
+  flex: 0 0 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+#topics {
+  list-style-type: none;
+  flex: 0 0 auto;
+  display: flex;
+  padding: 10px;
+  overflow-x: auto;
+  box-shadow: 0px 0px 10px gray;
+  a {
+    color: var(--black-font-color);
+    text-decoration: none;
+    margin-right: 10px;
+    span {
+      margin-right: 1px;
+    }
+    &:not(.active) {
+      color: #999;
+    }
+  }
+}
+
+@media (min-width: 972px) {
+  #app {
+    flex-direction: row;
+  }
+}
+
+@media (hover: hover) {
+  #topics a:hover {
+    color: initial;
+  }
+}
